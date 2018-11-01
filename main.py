@@ -18,7 +18,7 @@ import torchvision.datasets as dset
 import torchvision.transforms as transforms
 import torchvision.utils
 from torch.autograd import Variable
-os.chdir('/Users/noorsajid/Desktop/1stRotation/Code/second_pass/')
+os.chdir('/Users/noorsajid/Desktop/1stRotation/medgit/')
 import model
 import utils as logging
 

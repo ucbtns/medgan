@@ -205,7 +205,7 @@ class Discriminator(nn.Module):
     #output_z = nn.parallel.data_parallel(self.inference_z, z, gpu_ids)
     #output = nn.parallel.data_parallel(self.inference_joint, torch.cat((output_x, output_z), 1), gpu_ids)
     output_x = self.inference_x(x)
-    output_z = self.inference_x(z)
+    output_z = self.inference_z(z)
     
     #return output
     return self.inference_joint(torch.cat((output_x, output_z), 1))
