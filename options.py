@@ -6,7 +6,7 @@ Returns:
     [argparse]: Class containing argparse
 """
 
-import argparse
+import argparse 
 import os
 import torch
 from pathlib import Path
@@ -24,8 +24,8 @@ class Options():
         #
         self.parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
-        self.parser.add_argument('--dataroot', default=Path('C:\\Users\\vilmarith\\Desktop\\gandat'), help='path to dataset')
-        self.parser.add_argument('--batchsize', type=int, default=2, help='input batch size')
+        self.parser.add_argument('--dataroot', default=Path('E:\cropped\Atelectasis'), help='path to dataset')
+        self.parser.add_argument('--batchsize', type=int, default=16, help='input batch size')
         self.parser.add_argument('--workers', type=int, help='number of data loading workers', default=0)
         self.parser.add_argument('--droplast', action='store_true', default=True, help='Drop last batch size.')
         self.parser.add_argument('--isize', type=int, default=256, help='input image size.')
@@ -37,29 +37,29 @@ class Options():
         self.parser.add_argument('--device', type=str, default='gpu', help='Device: gpu | cpu')
         self.parser.add_argument('--gpu_ids', type=str, default='0', help='gpu ids: e.g. 0  0,1,2, 0,2. use -1 for CPU')
         self.parser.add_argument('--ngpu', type=int, default=1, help='number of GPUs to use')
-        self.parser.add_argument('--name', type=str, default='64_gan2', help='name of the experiment')
+        self.parser.add_argument('--name', type=str, default='256_gan-ate', help='name of the experiment')
         self.parser.add_argument('--model', type=str, default='ganbbe', help='chooses which model to use. ganomaly')
         self.parser.add_argument('--display_server', type=str, default="http://localhost", help='visdom server of the web display')
         self.parser.add_argument('--display_port', type=int, default=8097, help='visdom port of the web display')
         self.parser.add_argument('--display_id', type=int, default=1, help='window id of the web display')
         self.parser.add_argument('--display', action='store_true', help='Use visdom.')
-        self.parser.add_argument('--outf', default='./gan_1000_2', help='folder to output images and model checkpoints')
+        self.parser.add_argument('--outf', default='./gan_1000_1', help='folder to output images and model checkpoints')
         self.parser.add_argument('--manualseed', default=302, type=int, help='manual seed')
         self.parser.add_argument('--anomaly_class', default='tb', help='Anomaly class idx for mnist and cifar datasets')
-        self.parser.add_argument('--proportion', type=float, default=0.33, help='Proportion of anomalies in test set.')
+        self.parser.add_argument('--proportion', type=float, default=0.20, help='Proportion of anomalies in test set.')
         self.parser.add_argument('--metric', type=str, default='roc', help='Evaluation metric.')
 
         ##
         # Train
         self.parser.add_argument('--print_freq', type=int, default=1, help='frequency of showing training results on console')
-        self.parser.add_argument('--save_image_freq', type=int, default=100, help='frequency of saving real and fake images')
+        self.parser.add_argument('--save_image_freq', type=int, default=200, help='frequency of saving real and fake images')
         self.parser.add_argument('--save_test_images', default = True, action='store_true', help='Save test images for demo.')
         self.parser.add_argument('--load_weights', action='store_true', help='Load the pretrained weights')
-        #self.parser.add_argument('--resume', default = Path('E:\\ganomly\\gan_1000_2\\64_gan2\\train\\weights'), help="path to checkpoints (to continue training)")
-        self.parser.add_argument('--resume', default = '', help="path to checkpoints (to continue training)")     
+        self.parser.add_argument('--resume', default = Path('E:\\ganomly\\gan_1000_1\\256_gan-pne\\train\\weights'), help="path to checkpoints (to continue training)")
+        #self.parser.add_argument('--resume', default = '', help="path to checkpoints (to continue training)")     
         self.parser.add_argument('--phase', type=str, default='train', help='train, val, test, etc')
         self.parser.add_argument('--iter', type=int, default=0, help='Start from iteration i')
-        self.parser.add_argument('--niter', type=int, default=50, help='number of epochs to train for')
+        self.parser.add_argument('--niter', type=int, default=300, help='number of epochs to train for')
         self.parser.add_argument('--beta1', type=float, default=0.5, help='momentum term of adam')
         self.parser.add_argument('--lr', type=float, default=0.0002, help='initial learning rate for adam')
         self.parser.add_argument('--w_bce', type=float, default=1, help='alpha to weight bce loss.')

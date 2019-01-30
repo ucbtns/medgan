@@ -78,7 +78,7 @@ plt.ylabel('True Positive Rate')
 plt.title('Receiver operating characteristic')
 plt.legend(loc="lower right")
 
-plt.savefig(saveto)
-plt.close()
+        plt.savefig(saveto)
+        plt.close()
 
 
