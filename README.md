@@ -1,5 +1,7 @@
 ﻿## GAN for CHEST ABNORMALITY DETECTION: 
-This repository contains PyTorch implementation of a modified gan [1]
+This repository contains PyTorch implementation of a modified gan [1] for the application of chest abnormality detection. 
+
+- This was trained on TB data acquired as part of UCLH's Treat and Find Project. 
 
 ## Reference
 [[1]  S. Akcay, A. Atapour-Abarghouei, and T. P. Breckon.  
