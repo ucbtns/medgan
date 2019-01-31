@@ -1,1 +1,1 @@
-Please contact me @ noor.sajid.18@ucl.ac.uk to get access to the pretrained weights for a 256*256 GAN.
+Please contact me @ noor.sajid.18@ucl.ac.uk to get access to the pretrained weights for a 256*256 GAN or try [this](https://drive.google.com/drive/folders/1tuRkWDc7HAnHZ082pUEY-jyiYH0AhR8C?usp=sharing).
