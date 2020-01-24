@@ -1,0 +1,35 @@
+
+
+import pandas as pd
+import seaborn as sns
+import numpy as np
+import math
+import matplotlib.pyplot as plt
+from sklearn.metrics import roc_curve, auc
+
+df = pd.read_csv('/Users/noorsajid/Desktop/128_100_output.csv').set_index('Unnamed: 0')
+df32 = pd.read_csv('/Users/noorsajid/Desktop/output_scores32.csv').set_index('Unnamed: 0')
+df64 = pd.read_csv('/Users/noorsajid/Desktop/output64.csv').set_index('Unnamed: 0')
+df256 = pd.read_csv('/Users/noorsajid/Desktop/512.csv').set_index('Unnamed: 0')
+
+df256 = pd.read_csv('/Users/noorsajid/Desktop/output-pne256.csv').set_index('Unnamed: 0')
+#df = df.fillna(0)
+
+def change(df, num):
+    df['id_resuffixed'] = df.id.apply(lambda x: x[1:-10])
+    df['id_resuffixed'] = df.id
+    df['an_score_binary'] = np.where(df['an'] >= num, 1, 0)
+    
+    df_id = pd.DataFrame(df.groupby(['id_resuffixed'])['an_score_binary'].sum())
+    gt = df.groupby(['id_resuffixed'])['gt'].max()
+    
+    df_id = df_id.join(gt)
+    df_id = df_id.reset_index()
+    df_id['normal_an'] = df_id['an_score_binary']/9
+    
+    fpr, tpr, _ = roc_curve(df_id['gt'], df_id['normal_an'])
+    roc_auc = auc(fpr, tpr)
+
+    return df, fpr, tpr, roc_auc, df_id
+
+df256, fpr256, tpr256, roc_auc256, df_id256 = change(df64, 0.18)
